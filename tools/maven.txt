@@ -1,0 +1,41 @@
+1.build
+mvn archetype:generate -DgroupId={project-packaging} -DartifactId={project-name} -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+2.dependency
+//redis
+<dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+      <version>2.9.0</version>
+</dependency>
+
+//gson
+<dependency>
+    <groupId>com.google.code.gson</groupId>  
+    <artifactId>gson</artifactId>  
+    <version>2.8.5</version>  
+</dependency>
+
+
+3.proxy in /usr/share/maven/conf/settings.xml
+<proxy>
+      <id>my-proxy-http</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <host>child-prc.intel.com</host>
+      <port>913</port>
+</proxy>
+<proxy>
+      <id>my-proxy-https</id>
+      <active>true</active>
+      <protocol>https</protocol>
+      <host>child-prc.intel.com</host>
+      <port>913</port>
+</proxy>
+如果不成功需要将该settings.xml文件复制到~/.m2/目录下
+
+
+跳过测试
+mvn install -DskipTests
+mvn install -Dmaven.test.skip=true
+
